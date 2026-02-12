@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Maryam 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #fff, #fdeff2);
+    overflow: hidden;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Glow behind texts */
+.glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.9), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(100px);
+    z-index: 0;
+}
+
+/* Container */
+.container {
+    position: relative;
+    top: 15vh;
+    z-index: 5;
+    max-width: 90%;
+    margin: auto;
+}
+
+/* Animated Name */
+.name {
+    font-family: 'Dancing Script', cursive;
+    font-size: 70px;
+    color: #b76e79;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #b76e79;
+    animation: typing 3s steps(12) forwards, blink 0.8s infinite;
+}
+
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink { 50% { border-color: transparent; } }
+
+p {
+    font-size: 22px;
+    color: #444;
+    font-weight: 500;
+}
+
+/* Buttons */
+button {
+    padding: 16px 50px;
+    font-size: 22px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    margin: 20px;
+    transition: 0.3s, transform 0.2s;
+}
+
+/* YES button - luxury look */
+.yes {
+    background: linear-gradient(135deg,#ff9ccf,#b76e79);
+    color: white;
+    box-shadow: 0 10px 25px rgba(183,110,121,0.5);
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive;
+    letter-spacing: 1px;
+}
+
+.yes:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 30px rgba(183,110,121,0.7);
+}
+
+/* NO button - elegant but tricky */
+.no {
+    background: transparent;
+    border: 3px solid #b76e79;
+    color: #b76e79;
+    position: absolute;
+    font-weight: bold;
+}
+
+/* Angry messages */
+.angry {
+    font-size: 28px;
+    color: #b76e79;
+    margin-top: 15px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+/* Falling flowers */
+.flower {
+    position: absolute;
+    top: -10px;
+    animation: fall linear infinite;
+    z-index: 1;
+}
+
+@keyframes fall { to { transform: translateY(110vh); } }
+
+/* Responsive */
+@media(max-width:600px){
+    .name { font-size: 50px; }
+    p { font-size:18px; }
+    button { font-size:18px; padding:12px 40px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+
+<div class="container">
+    <div class="name">Maryouumti 💖</div>
+    <p>Maryoumm, ever since you came into my life, every day feels brighter, every smile sweeter… 🌸</p>
+    <p>Will you be my Valentine and make my heart shine even more? 💖</p>
+
+    <h2> 🤍</h2>
+
+    <button class="yes" id="yesBtn" onclick="yesClicked()">YES 💖</button>
+    <button class="no" id="noBtn" onmouseover="growYes()">NO</button>
+
+    <div id="angryMessage"></div>
+</div>
+
+<audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c1c9e6f3a.mp3?filename=romantic-background-112191.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let yesSize = 1;
+let noCount = 0;
+
+function growYes() {
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const angryDiv = document.getElementById("angryMessage");
+
+    noCount++;
+
+    // Grow YES button
+    yesSize += 0.25;
+    yesBtn.style.transform = "scale(" + yesSize + ")";
+
+    // Move NO button
+    noBtn.style.top = Math.random() * 80 + "%";
+    noBtn.style.left = Math.random() * 80 + "%";
+
+    // Messages
+    if(noCount === 3){
+        angryDiv.innerHTML = '<div class="angry">Maryouuumtii 😠</div>';
+    } else if(noCount === 5){
+        angryDiv.innerHTML = '<div class="angry"> Maryoummmaa 💖</div>';
+    } else if(noCount === 8){
+        angryDiv.innerHTML = '<div class="angry"> Maryoumtii enzli YES 😤</div>';
+    } else if(noCount === 10){
+        angryDiv.innerHTML = '<div class="angry"> mmmmmm 😈</div>';
+    } 
+    // FINAL MODE at 12
+    else if(noCount === 12){
+        noBtn.style.display = "none"; // hide NO
+        yesBtn.style.position = "fixed";
+        yesBtn.style.top = "0";
+        yesBtn.style.left = "0";
+        yesBtn.style.width = "100vw";
+        yesBtn.style.height = "100vh";
+        yesBtn.style.fontSize = "50px";
+        yesBtn.style.borderRadius = "0";
+        yesBtn.style.transform = "scale(1)";
+        angryDiv.innerHTML = '<div class="angry"> Maadch aandk choix tawa  😌💖</div>';
+
+        // Petals explosion
+        for (let i = 0; i < 60; i++) {
+            let petal = document.createElement("div");
+            petal.innerHTML = "🌸";
+            petal.style.position = "absolute";
+            petal.style.left = Math.random() * window.innerWidth + "px";
+            petal.style.top = Math.random() * window.innerHeight + "px";
+            petal.style.fontSize = (Math.random()*30+15) + "px";
+            petal.style.transition = "2s";
+            document.body.appendChild(petal);
+            setTimeout(() => {
+                petal.style.transform = `translate(${Math.random()*600-300}px, ${Math.random()*600-300}px) rotate(${Math.random()*360}deg)`;
+                petal.style.opacity = 0;
+            }, 50);
+        }
+
+        // Screen shake + vibration
+        let i = 0;
+        const shake = setInterval(()=>{
+            document.body.style.transform = `translate(${Math.random()*10-5}px, ${Math.random()*10-5}px)`;
+            if(navigator.vibrate){ navigator.vibrate(100); }
+            i++;
+            if(i>10){ clearInterval(shake); document.body.style.transform=""; }
+        },50);
+    }
+}
+
+function yesClicked() {
+    document.body.innerHTML = `
+        <div style="height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background:linear-gradient(to bottom,#fff,#fdeff2); text-align:center;">
+            <div style="font-size:80px;">💍</div>
+            <h1 style="font-family:'Dancing Script'; font-size:70px; color:#b76e79;">
+                She said YES 💖
+            </h1>
+            <p style="font-size:26px; color:#555;">
+                Maryoumti, since you came into my life, everything feels brighter <br>
+                 I vow to hold you close in every storm,
+                  To love you endlessly in sickness and in health.<br>
+                  Forever and always… my heart belongs to you ,<br>
+                  nhebek barcha 💖
+                    AZIZ <br>
+
+            </p>
+        </div>
+    `;
+}
+
+// Falling flowers
+for (let i = 0; i < 40; i++) {
+    let flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.innerHTML = "🌸";
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    flower.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(flower);
+}
+</script>
+
+</body>
+</html>
